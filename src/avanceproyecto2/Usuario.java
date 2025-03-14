@@ -6,10 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Usuario {
+public class Usuario implements Serializable{
     private String nombre;
     private String apellido;
     private String contrasena;
