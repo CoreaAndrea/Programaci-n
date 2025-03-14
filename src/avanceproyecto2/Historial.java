@@ -9,5 +9,7 @@ package avanceproyecto2;
  * @author Colegio
  */
 public class Historial {
+    // ver rutinas
+    private String historial;
     
 }
