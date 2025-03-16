@@ -204,7 +204,7 @@ public  abstract class Ejercicios {
        while (continuar) {
             String menu = "1. Flexiones\n"
                         + "2. Planchas\n"
-                        + "3. Extensiones de tríceps\n"
+                        + "3. Extensiones de triceps\n"
                         + "4. Elevaciones laterales de hombros\n"
                         + "5. Salir\n";
            
@@ -229,7 +229,7 @@ public  abstract class Ejercicios {
                     break;
                 
                 case 3:
-                    nombre_ejercicio = "Extensiones de tríceps";
+                    nombre_ejercicio = "Extensiones de triceps";
                     descripcion = "Las extensiones de tríceps son un ejercicio para trabajar la parte"
                             + " posterior de los brazos.";
                     repeticiones = "3 series de 10-12 repeticiones";

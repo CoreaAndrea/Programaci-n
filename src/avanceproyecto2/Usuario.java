@@ -17,7 +17,7 @@ public class Usuario implements Serializable{
     private String usuario;
     private static ArrayList<Usuario> usuarios = new ArrayList<>();
 
-    public Usuario(String nombre, String apellido, String contrasena, String usuario) {
+    public Usuario(String nombre, String apellido, String usuario, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.contrasena = contrasena;
@@ -69,11 +69,15 @@ public class Usuario implements Serializable{
     }
     public void archivo(){
         try{
-            FileOutputStream archivo = new FileOutputStream("Clientes.usuarios");
+            FileOutputStream archivo = new FileOutputStream("Clientes.usuario");
             ObjectOutputStream output = new ObjectOutputStream(archivo);
             output.writeObject(usuarios);
             output.close();
             archivo.close();
+            System.out.println("Usuarios guardados: " + usuarios.size());
+            for (Usuario u : usuarios) {
+             System.out.println("Usuario: " + u.getUsuario() + ", Contraseña: " + u.getContrasena());
+        }
          } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error al guardar usuarios.");
         }
@@ -81,14 +85,32 @@ public class Usuario implements Serializable{
     }
     public void buscarUsuario(){
         try {
-            FileInputStream archivo = new FileInputStream("Clientes.usuarios");
-            ObjectInputStream input = new ObjectInputStream(archivo);
-            usuarios = (ArrayList<Usuario>) input.readObject();
-            input.close();
-            archivo.close();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No se encontró el archivo de usuarios.");
+        FileInputStream archivo = new FileInputStream("Clientes.usuario");
+        ObjectInputStream input = new ObjectInputStream(archivo);
+        
+        // Leemos el objeto
+        Object obj = input.readObject();
+        
+        // Intentamos hacer el cast directamente
+        try {
+            usuarios = (ArrayList<Usuario>) obj;  // Intentamos convertir el objeto a ArrayList<Usuario>
+            System.out.println("Usuarios cargados correctamente");
+        } catch (ClassCastException e) {
+            // Si el cast falla, inicializamos una lista vacía
+            usuarios = new ArrayList<>();
+            System.out.println("El archivo no contiene un ArrayList<Usuario> válido");
         }
+        
+        input.close();
+        archivo.close();
+    } catch (IOException | ClassNotFoundException e) {
+        // Si ocurre un error durante la lectura o al no encontrar el archivo
+        System.out.println("Error al leer el archivo: " + e.getMessage());
+        
+        // Inicializamos la lista vacía en caso de error
+        usuarios = new ArrayList<>();
+    }
+
     
     }
      public void crear_cuenta(){
@@ -106,6 +128,9 @@ public class Usuario implements Serializable{
         buscarUsuario();
         String usuario_i = JOptionPane.showInputDialog("Ingrese su usuario: ");
         String contrasena_i = JOptionPane.showInputDialog("Ingrese su clave: ");
+        
+         System.out.println("Usuario ingresado: " + usuario_i);
+         System.out.println("Contraseña ingresada: " + contrasena_i);
         
         for (Usuario u : usuarios){
             if (u.getUsuario().equals(usuario_i) && u.getContrasena().equals(contrasena_i)) {

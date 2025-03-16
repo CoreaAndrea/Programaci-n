@@ -15,6 +15,9 @@ public class Crear_Rutina extends Ejercicios {
     public Crear_Rutina() {
          rutinaPersonalizada = new ArrayList<>();  
     }
+    public interface Rutina {
+    void mostrarRutina();
+    }
     
     
     public void verEjercicios1() {

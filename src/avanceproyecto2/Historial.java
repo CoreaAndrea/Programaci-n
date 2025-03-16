@@ -4,12 +4,14 @@
  */
 package avanceproyecto2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Colegio
  */
 public class Historial {
     // ver rutinas
-    private String historial;
-    
 }
+    
+
