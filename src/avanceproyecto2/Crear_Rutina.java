@@ -13,7 +13,7 @@ public class Crear_Rutina extends Ejercicios {
     }
 
     public Crear_Rutina() {
-         rutinaPersonalizada = new ArrayList<>();  
+        rutinaPersonalizada = new ArrayList<>();  
     }
     
     
@@ -21,7 +21,7 @@ public class Crear_Rutina extends Ejercicios {
     public void verEjercicios1() {
         boolean continuar = true;
         while (continuar) {
-            // Menú de ejercicios disponibles
+       
             String menu = "1. Sentadillas\n"
                         + "2. Zancadas\n"
                         + "3. Dominadas\n"
@@ -181,7 +181,6 @@ public class Crear_Rutina extends Ejercicios {
         }
     }
    public void agregarEjercicioARutina(String ejercicio) {
-        // Agregamos el ejercicio solo si no existe previamente
         for (String e : rutinaPersonalizada) {
             if (e.equals(ejercicio)) {
                 JOptionPane.showMessageDialog(null, ejercicio + " ya está en tu rutina.");
@@ -197,7 +196,6 @@ public class Crear_Rutina extends Ejercicios {
         } else {
             String rutina = "Tu rutina personalizada:\n";
             int contador = 1;
-            // Iterar sobre la rutina y mostrar cada ejercicio
             for (int i = 0; i < rutinaPersonalizada.size(); i++) {
                 rutina += contador + ". " + rutinaPersonalizada.get(i) + "\n";
                 contador++;
@@ -205,6 +203,7 @@ public class Crear_Rutina extends Ejercicios {
             JOptionPane.showMessageDialog(null, rutina);
         }
     }
+    
 }
     
     

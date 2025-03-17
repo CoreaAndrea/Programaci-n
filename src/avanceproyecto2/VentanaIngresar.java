@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package avanceproyecto2;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Colegio
- */
 public class VentanaIngresar extends javax.swing.JFrame {
     Usuario usuario = new Usuario();
     private int intentos = 0;
@@ -167,33 +160,37 @@ public class VentanaIngresar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    usuario.setUsuario(jTextField1.getText());
-    usuario.setContrasena(jTextField2.getText());
+        usuario.setUsuario(jTextField1.getText());
+        usuario.setContrasena(jTextField2.getText());
 
-   
-    usuario.buscarUsuario(); 
+        usuario.buscarUsuario(); 
 
-    if (usuario.login()) {
-        JOptionPane.showMessageDialog(this, "Bienvenido al sistema.");
-        this.dispose(); 
-        
-        VentanaMenu ventanaMenu = new VentanaMenu();
-        ventanaMenu.setVisible(true); 
-    
-    } else {
-       intentos++;
-       if (intentos >= 3) {
-            JOptionPane.showMessageDialog(this, "Has excedido el número de intentos.");
-            this.dispose();
-
-            VentanaInicio ventanaInicio = new VentanaInicio();
-            ventanaInicio.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Intentos restantes: " + (3 - intentos));
+        boolean loginExitoso = false;
+        for (Usuario u : Usuario.getUsuarios()) {
+            if (u.getUsuario().equals(jTextField1.getText()) && u.getContrasena().equals(jTextField2.getText())) {
+                loginExitoso = true;
+                break;
+            }
         }
-    }
 
-  
+        if (loginExitoso) {
+            JOptionPane.showMessageDialog(this, "Bienvenido al sistema.");
+            this.dispose();
+            VentanaMenu ventanaMenu = new VentanaMenu();
+            ventanaMenu.setVisible(true);
+    
+        } else {
+            intentos++;
+            if (intentos >= 3) {
+                JOptionPane.showMessageDialog(this, "Has excedido el número de intentos.");
+                this.dispose();
+                VentanaInicio ventanaInicio = new VentanaInicio();
+                ventanaInicio.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Intentos restantes: " + (3 - intentos));
+            }
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

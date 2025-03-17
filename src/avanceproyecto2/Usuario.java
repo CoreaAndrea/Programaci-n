@@ -87,16 +87,12 @@ public class Usuario implements Serializable{
         try {
         FileInputStream archivo = new FileInputStream("Clientes.usuario");
         ObjectInputStream input = new ObjectInputStream(archivo);
-        
-        // Leemos el objeto
         Object obj = input.readObject();
         
-        // Intentamos hacer el cast directamente
         try {
-            usuarios = (ArrayList<Usuario>) obj;  // Intentamos convertir el objeto a ArrayList<Usuario>
+            usuarios = (ArrayList<Usuario>) obj;  
             System.out.println("Usuarios cargados correctamente");
         } catch (ClassCastException e) {
-            // Si el cast falla, inicializamos una lista vacía
             usuarios = new ArrayList<>();
             System.out.println("El archivo no contiene un ArrayList<Usuario> válido");
         }
@@ -104,10 +100,7 @@ public class Usuario implements Serializable{
         input.close();
         archivo.close();
     } catch (IOException | ClassNotFoundException e) {
-        // Si ocurre un error durante la lectura o al no encontrar el archivo
         System.out.println("Error al leer el archivo: " + e.getMessage());
-        
-        // Inicializamos la lista vacía en caso de error
         usuarios = new ArrayList<>();
     }
 
@@ -116,33 +109,45 @@ public class Usuario implements Serializable{
      public void crear_cuenta(){
         nombre = JOptionPane.showInputDialog("Ingrese su nombre: ");
         apellido = JOptionPane.showInputDialog("Ingrese su apellido: ");
-        usuario = JOptionPane.showInputDialog("Ingrese una clave para ingresar al sistema: ");
+        usuario = JOptionPane.showInputDialog("Ingrese un usuario para ingresar al sistema: ");
         contrasena = JOptionPane.showInputDialog("Ingrese una contrasena para ingresar al sistema: ");
         
-        usuarios.add(new Usuario(nombre, apellido, contrasena, usuario));
+        usuarios.add(new Usuario(nombre, apellido, usuario, contrasena));
         archivo();
         JOptionPane.showMessageDialog(null, "Cuenta creada exitosamente.");
      
     }  
     public boolean login(){
-        buscarUsuario();
-        String usuario_i = JOptionPane.showInputDialog("Ingrese su usuario: ");
-        String contrasena_i = JOptionPane.showInputDialog("Ingrese su clave: ");
+        int intentos = 0; 
+        boolean loginExitoso = false;
         
-         System.out.println("Usuario ingresado: " + usuario_i);
-         System.out.println("Contraseña ingresada: " + contrasena_i);
+        while (intentos < 3 && !loginExitoso) {
+            String usuario_i = JOptionPane.showInputDialog("Ingrese su usuario: ");
+            String contrasena_i = JOptionPane.showInputDialog("Ingrese su clave: ");
         
-        for (Usuario u : usuarios){
-            if (u.getUsuario().equals(usuario_i) && u.getContrasena().equals(contrasena_i)) {
+            System.out.println("Usuario ingresado: " + usuario_i);
+            System.out.println("Contraseña ingresada: " + contrasena_i);
+
+       
+           for (Usuario u : usuarios) {
+                if (u.getUsuario().equals(usuario_i) && u.getContrasena().equals(contrasena_i)) {
                 JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso. Bienvenido " + u.getNombre() + "!");
+                loginExitoso = true; 
                 return true;
             }
-            
         }
-        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
-        return false;
-     
+        
+        intentos++; 
+        if (intentos < 3) {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos. ");
+        }
     }
     
     
+    if (!loginExitoso) {
+        JOptionPane.showMessageDialog(null, "Has agotado los 3 intentos. Intenta más tarde.");
+    }
+
+    return false;
+    }
 }

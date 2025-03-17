@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public  abstract class Ejercicios {
    protected String nombre_ejercicio;
    protected String descripcion;
-   protected String repeticiones; // cambiar en diagrama
+   protected String repeticiones; 
    protected String duracion;
 
     public Ejercicios(String nombre_ejercicio, String descripcion, String repeticiones, String duracion) {

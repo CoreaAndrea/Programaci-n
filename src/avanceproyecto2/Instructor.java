@@ -16,6 +16,8 @@ public class Instructor {
         this.dia = dia;
         this.hora = hora;
     }
+    
+    
 
     public String getInstructor() {
         return instructor;
@@ -49,9 +51,6 @@ public class Instructor {
         this.i_Seleccionado = i_Seleccionado;
     }
     
-
-    
-
     public Instructor() {
     }
     
@@ -187,7 +186,7 @@ public class Instructor {
         i_Seleccionado.add(instructor);
         JOptionPane.showMessageDialog(null, "Instructor agregado: " + instructor.instructor);
     }
-    private void mostrar() {
+    public void mostrar() {
         if(i_Seleccionado.size() == 0){
             JOptionPane.showMessageDialog(null, "No ha seleccionado ningún instructor.");
             
