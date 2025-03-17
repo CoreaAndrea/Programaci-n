@@ -17,6 +17,39 @@ public class Instructor {
         this.hora = hora;
     }
 
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public ArrayList<Instructor> getI_Seleccionado() {
+        return i_Seleccionado;
+    }
+
+    public void setI_Seleccionado(ArrayList<Instructor> i_Seleccionado) {
+        this.i_Seleccionado = i_Seleccionado;
+    }
+    
+
     
 
     public Instructor() {

@@ -182,7 +182,7 @@ public class Crear_Rutina extends Ejercicios {
             }
         }
     }
-    private void agregarEjercicioARutina(String ejercicio) {
+   public void agregarEjercicioARutina(String ejercicio) {
         // Agregamos el ejercicio solo si no existe previamente
         for (String e : rutinaPersonalizada) {
             if (e.equals(ejercicio)) {
