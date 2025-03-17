@@ -167,9 +167,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         VentanaIngresar ventanausuario = new VentanaIngresar();
         ventanausuario.setVisible(true);
-    
-    // Cerrar la ventana actual de inicio de sesión
-    setVisible(false); 
+        setVisible(false); 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -181,7 +179,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
         VentanaUsuario ventanaUsuario = new VentanaUsuario();
         ventanaUsuario.setVisible(true);
-        // Puedes cerrar la ventana actual si es necesario
         setVisible(false); 
     }//GEN-LAST:event_IniciarSesionActionPerformed
 

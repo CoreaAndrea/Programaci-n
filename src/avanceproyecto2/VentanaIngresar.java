@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class VentanaIngresar extends javax.swing.JFrame {
     Usuario usuario = new Usuario();
+    private int intentos = 0;
     
     /**
      * Creates new form VentanaIngresar
@@ -82,7 +83,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -116,7 +117,7 @@ public class VentanaIngresar extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(102, 102, 102)
                 .addComponent(jButton2)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,28 +161,36 @@ public class VentanaIngresar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       VentanaInicio ventanaInicio = new VentanaInicio();
+       ventanaInicio.setVisible(true);
+       this.setVisible(false); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
-
-    // Llamar a buscarUsuario() para cargar la lista de usuarios desde el archivo
     usuario.setUsuario(jTextField1.getText());
     usuario.setContrasena(jTextField2.getText());
 
-    // Llamar al método buscarUsuario() justo antes de intentar hacer el login
-    usuario.buscarUsuario();  // Cargar los usuarios desde el archivo solo cuando lo necesitemos
+   
+    usuario.buscarUsuario(); 
 
-    // Llamar al método login() para verificar si las credenciales son correctas
     if (usuario.login()) {
-        // Si el login es exitoso, hacer algo, como abrir una nueva ventana
         JOptionPane.showMessageDialog(this, "Bienvenido al sistema.");
-        // Puedes cerrar la ventana de login o redirigir a otra ventana aquí
-        this.dispose(); // Cierra la ventana actual
+        this.dispose(); 
+        
+        VentanaMenu ventanaMenu = new VentanaMenu();
+        ventanaMenu.setVisible(true); 
+    
     } else {
-        // Si el login falla, mostrar un mensaje de error
-        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+       intentos++;
+       if (intentos >= 3) {
+            JOptionPane.showMessageDialog(this, "Has excedido el número de intentos.");
+            this.dispose();
+
+            VentanaInicio ventanaInicio = new VentanaInicio();
+            ventanaInicio.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Intentos restantes: " + (3 - intentos));
+        }
     }
 
   

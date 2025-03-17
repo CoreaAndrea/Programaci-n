@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Colegio
  */
 public class Historial {
-    // ver rutinas
+    
 }
     
 
